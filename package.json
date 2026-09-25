@@ -4,7 +4,15 @@
   "description": "Repositório de Back-end + Web para o projeto *[PLACEHOLDER: Nome do Projeto]*, projeto o qual possui o objetivo de [PLACEHOLDER: descrição em 2-3 frases — a equipe ainda não convergiu para um único enunciado de problema; ver seção \"Situação Atual\" no fim deste README].",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "dev": "ts-node-dev --respawn src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -20,10 +28,12 @@
   "homepage": "https://github.com/Fabio-Guilherme-79811/Projeto_Integrador_TI#readme",
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "dotenv": "^18.0.4",
     "ejs": "^6.0.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-    "multer": "^2.4.0"
+    "multer": "^2.4.0",
+    "mysql2": "^3.24.4"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
