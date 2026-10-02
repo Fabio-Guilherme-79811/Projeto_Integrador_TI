@@ -5,11 +5,13 @@ export const MAX_TENTATIVAS_LOGIN = 5;
 export const MINUTOS_BLOQUEIO_LOGIN = 10;
 export const TAMANHO_MINIMO_SENHA = 5;
 
+export type Perfil = (typeof PERFIS)[number];
+
 const REGEX_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const REGEX_HASH_BCRYPT = /^\$2[aby]\$\d{2}\$[./A-Za-z0-9]{53}$/;
 
 export interface UsuarioProps {
-  id?: number;
+  id?: number | undefined;
   nome: string;
   email: string;
   senhaHash: string;
@@ -22,7 +24,7 @@ export interface UsuarioProps {
 }
 
 export class Usuario {
-  private _id?: number;
+  private _id: number | undefined;
   private _nome: string;
   private _email: string;
   private _senhaHash: string;
