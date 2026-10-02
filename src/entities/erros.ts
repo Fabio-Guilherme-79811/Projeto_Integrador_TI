@@ -31,4 +31,4 @@ export class ErroDeRegraDeNegocio extends Error {
 /** Padrão usado em todos os validar(): acumula erros e lança uma única vez. */
 export function lancarSeInvalido(erros: string[]): void {
   if (erros.length > 0) throw new ErroDeValidacao(erros);
-}
+} 
