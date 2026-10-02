@@ -23,7 +23,7 @@ export interface PerguntaProps {
   atualizadoEm?: Date | string;
   // agregados preenchidos pelo repository (COUNT/JOIN), não são colunas da tabela:
   totalRespostas?: number;
-  totalTambemTenho?: number;
+  totalDuvidaCompartilhada?: number;
   temRespostaValidada?: boolean;
 }
 
@@ -40,7 +40,7 @@ export class Pergunta {
   private _criadoEm: Date;
   private _atualizadoEm: Date;
   private _totalRespostas: number;
-  private _totalTambemTenho: number;
+  private _totalDuvidaCompartilhada: number;
   private _temRespostaValidada: boolean;
 
   constructor(p: PerguntaProps) {
@@ -56,7 +56,7 @@ export class Pergunta {
     this._criadoEm = paraData(p.criadoEm) ?? new Date();
     this._atualizadoEm = paraData(p.atualizadoEm) ?? this._criadoEm;
     this._totalRespostas = p.totalRespostas ?? 0;
-    this._totalTambemTenho = p.totalTambemTenho ?? 0;
+    this._totalDuvidaCompartilhada = p.totalDuvidaCompartilhada ?? 0;
     this._temRespostaValidada = p.temRespostaValidada ?? false;
   }
 
@@ -79,8 +79,8 @@ export class Pergunta {
   get atualizadoEm(): Date { return this._atualizadoEm; }
   get totalRespostas(): number { return this._totalRespostas; }
   set totalRespostas(v: number) { this._totalRespostas = v; }
-  get totalTambemTenho(): number { return this._totalTambemTenho; }
-  set totalTambemTenho(v: number) { this._totalTambemTenho = v; }
+  get totalDuvidaCompartilhada(): number { return this._totalDuvidaCompartilhada; }
+  set totalDuvidaCompartilhada(v: number) { this._totalDuvidaCompartilhada = v; }
   get temRespostaValidada(): boolean { return this._temRespostaValidada; }
   set temRespostaValidada(v: boolean) { this._temRespostaValidada = v; }
 
@@ -94,7 +94,7 @@ export class Pergunta {
 
   /** "também tenho" sem resposta validada → destaque + alerta ao professor. */
   precisaDestaque(): boolean {
-    return !this._temRespostaValidada && this._totalTambemTenho >= LIMITE_TAMBEM_TENHO_DESTAQUE;
+    return !this._temRespostaValidada && this._totalDuvidaCompartilhada >= LIMITE_TAMBEM_TENHO_DESTAQUE;
   }
 
   /** o autor edita/exclui enquanto não houver respostas. */
@@ -141,7 +141,7 @@ export class Pergunta {
       criadoEm: this._criadoEm,
       atualizadoEm: this._atualizadoEm,
       totalRespostas: this._totalRespostas,
-      totalTambemTenho: this._totalTambemTenho,
+      totalDuvidaCompartilhada: this._totalDuvidaCompartilhada,
       status: this.status,
       destaque: this.precisaDestaque(),
     };
