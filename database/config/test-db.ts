@@ -1,4 +1,4 @@
-import { Conexao } from "./conexao"
+import { Conexao } from "./conexao-database"
 
 async function testarConexao() {
   try {
