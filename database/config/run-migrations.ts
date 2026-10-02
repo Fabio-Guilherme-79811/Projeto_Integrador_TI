@@ -1,11 +1,10 @@
-// database/run-migrations.ts
 import fs from "fs";
 import path from "path";
 import { Conexao } from "./conexao-database";
 
 async function runMigrations() {
   const dir = path.join(__dirname, "migrations");
-  const arquivos = fs.readdirSync(dir).sort(); // garante a ordem 001, 002, 003...
+  const arquivos = fs.readdirSync(dir).sort(); 
 
   for (const arquivo of arquivos) {
     const sql = fs.readFileSync(path.join(dir, arquivo), "utf-8");
