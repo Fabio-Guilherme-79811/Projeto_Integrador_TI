@@ -1,7 +1,6 @@
-// database/run-seeds.ts
-import { seedUsuarios } from "../seeds/seed-usuarios";
-import { seedTurmasMaterias } from "../seeds/seed-turmas-materias";
-import { seedPerguntasRespostas } from "../seeds/seed-perguntas-respostas";
+import { seedUsuarios } from "./seeds/seed-usuarios";  
+import { seedTurmasMaterias } from "./seeds/seed-turmas-materias";
+import { seedPerguntasRespostas } from "./seeds/seed-perguntas-respostas";
 
 async function runSeeds() {
   await seedUsuarios();

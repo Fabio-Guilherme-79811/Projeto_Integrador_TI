@@ -13,7 +13,7 @@
     "lint:fix": "eslint src --ext .ts --fix",
     "format": "prettier --write \"src/**/*.ts\"",
     "prepare": "husky",  
-    "migrate": "ts-node database/run-migrations.ts",
+    "migrate": "ts-node database/config/run-migrations.ts",
     "seed": "ts-node database/run-seeds.ts"
   },
   "repository": {

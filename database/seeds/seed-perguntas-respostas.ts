@@ -1,14 +1,14 @@
 import { Conexao } from "../config/conexao-database"; 
 
 async function seedPerguntasRespostas() {
-  const [[aluno]]: any = await Conexao.pool.query(
+  const [[aluno]]: any = await Conexao.obterPool().query( 
     `SELECT id FROM usuarios WHERE email = 'ana.aluna@agora.com'`
   );
-  const [[materiaBD]]: any = await Conexao.pool.query(
+  const [[materiaBD]]: any = await Conexao.obterPool().query( 
     `SELECT id FROM materias WHERE nome = 'Banco de Dados'`
   );
 
-  const [resultadoPergunta]: any = await Conexao.pool.query(
+  const [resultadoPergunta]: any = await Conexao.obterPool().query( 
     `INSERT INTO perguntas (titulo, descricao, autor_id, materia_id) VALUES (?, ?, ?, ?)`,
     [
       "Qual a diferença entre INNER JOIN e LEFT JOIN?",
@@ -19,11 +19,11 @@ async function seedPerguntasRespostas() {
   );
   const perguntaId = resultadoPergunta.insertId;
 
-  const [[monitor]]: any = await Conexao.pool.query(
+  const [[monitor]]: any = await Conexao.obterPool().query( 
     `SELECT id FROM usuarios WHERE email = 'fernanda.monitora@agora.com'`
   );
 
-  await Conexao.pool.query(
+  await Conexao.obterPool().query( 
     `INSERT INTO respostas (conteudo, autor_id, pergunta_id, validada, validada_por) VALUES (?, ?, ?, ?, ?)`,
     [
       "INNER JOIN retorna só as linhas que têm correspondência nas duas tabelas. LEFT JOIN retorna todas as linhas da tabela da esquerda, mesmo sem correspondência na direita.",
@@ -34,7 +34,7 @@ async function seedPerguntasRespostas() {
     ]
   );
 
-  await Conexao.pool.query(
+  await Conexao.obterPool().query( 
     `UPDATE perguntas SET validada = TRUE WHERE id = ?`,
     [perguntaId]
   );

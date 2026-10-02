@@ -1,10 +1,10 @@
 import bcrypt from "bcrypt";
-import { Conexao } from "../config/conexao-database"; 
+import { Conexao } from "../config/conexao-database";
 
 async function seedUsuarios() {
   const senhaHash = await bcrypt.hash("senha123", 10);
 
-  await Conexao.pool.query(
+  await Conexao.obterPool().query(
     `INSERT INTO usuarios (nome, email, senha_hash, perfil) VALUES
       ('Ana Beatriz', 'ana.aluna@agora.com', ?, 'aluno'),
       ('Carlos Souza', 'carlos.aluno@agora.com', ?, 'aluno'),
